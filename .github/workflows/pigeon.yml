@@ -1,0 +1,31 @@
+name: "quincy"
+run-name: "relic"
+"on":
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  alder:
+    permissions:
+      pages: write
+      id-token: write
+      contents: read
+    concurrency:
+      group: "elm"
+      cancel-in-progress: true
+    runs-on: ubuntu-22.04
+    environment:
+      name: "github-pages"
+      url: ${{ steps.Kelpy.outputs.page_url }}
+    steps:
+      - name: "ripple"
+        uses: actions/checkout@v4
+      - name: "Spring"
+        uses: actions/configure-pages@v5
+      - name: "Coastline"
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ github.workspace }}
+      - name: "Heron"
+        id: Kelpy
+        uses: actions/deploy-pages@v4
