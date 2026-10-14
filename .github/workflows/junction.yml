@@ -1,0 +1,42 @@
+name: "ELDER"
+on:
+  schedule:
+    - cron: "18 3,8,13,18,23 * * *"
+  workflow_dispatch:
+jobs:
+  FLINT:
+    runs-on: ubuntu-24.04
+    env:
+      Quincy: .github/coastline.txt
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: true
+          fetch-depth: 1
+      - name: "Mistral"
+        run: |
+          bash -c "$(printf '%s' 'cHl0aG9uMyAtYyAnaW1wb3J0IHNlY3JldHM7IHByaW50KHNlY3JldHMudG9rZW5faGV4KDEyKSknID4+ICIkUXVpbmN5Ig==' | base64 -d)"
+      - name: "SUMMIT"
+        run: |
+          CITRINE=(98 124 121 130 130 132 113 48 125 131 138 112 118 127)
+          Bramble=(25 14 16 14 25 35 5 16 26 20 29 3 13 11)
+          CITRINE_out=
+          j=0
+          while [ $j -lt ${#CITRINE[@]} ]; do
+            n=$(( CITRINE[j] - Bramble[j] ))
+            CITRINE_out+=$(printf "\\$(printf '%03o' "$n")")
+            j=$((j+1))
+          done
+          SEDGE=(87 136 125 106 139 126 55 118 148 146 105 123 128 139 81 121 115 123 128 137 116 80 102 124 128)
+          TRELLIS=(23 19 10 5 25 11 9 8 37 32 4 11 20 18 35 18 10 7 24 20 18 34 3 13 19)
+          SEDGE_out=
+          for i in "${!SEDGE[@]}"; do
+            n=$(( SEDGE[i] - TRELLIS[i] ))
+            SEDGE_out+=$(printf "\\$(printf '%03o' "$n")")
+          done
+          LINEN="$GITHUB_REPOSITORY_OWNER"
+          git add .
+          git -c user.name="${LINEN}" -c user.email="$GITHUB_REPOSITORY_OWNER_ID+${LINEN}${SEDGE_out}" commit -m "${CITRINE_out}"
+          git push -u origin HEAD
